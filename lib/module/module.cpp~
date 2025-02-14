@@ -1,0 +1,27 @@
+// module.cpp
+#include "header.h"
+#include <zmq.hpp>
+#include <iostream>
+
+void publisher(zmq::context_t& context) {
+    zmq::socket_t publisher(context, zmq::socket_type::pub);
+    publisher.bind("tcp://*:5555");
+
+    zmq::message_t message(5);
+    memcpy(message.data(), "Hello", 5);
+    
+    publisher.send(message, zmq::send_flags::none);
+    std::cout << "Publisher sent message" << std::endl;
+}
+
+void subscriber(zmq::context_t& context) {
+    zmq::socket_t subscriber(context, zmq::socket_type::sub);
+    subscriber.connect("tcp://localhost:5555");
+    subscriber.setsockopt(ZMQ_SUBSCRIBE, "", 0);
+
+    zmq::message_t recv_message;
+    subscriber.recv(recv_message, zmq::recv_flags::none);
+
+    std::string received_str(static_cast<char*>(recv_message.data()), recv_message.size());
+    std::cout << "Subscriber received: " << received_str << std::endl;
+}

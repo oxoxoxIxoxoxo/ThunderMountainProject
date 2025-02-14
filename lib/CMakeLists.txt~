@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.12)
+
+project(ZMQExample)
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+
+# Add include directories
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/module)
+
+# Add source files
+add_executable(main main/main.cpp module/module.cpp)
+
+# Specify the full path to ZeroMQConfig.cmake
+set(ZMQ_DIR "/Users/jeremiassoll/Documents/Microcoaster/Simulation/lib/libzmq/build/lib/cmake/zmq")
+
+# Find the ZeroMQ package
+find_package(ZMQ REQUIRED)
+
+# Link ZeroMQ with your project
+target_link_libraries(main zmq)

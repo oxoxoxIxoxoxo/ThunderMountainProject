@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.12)
+
+project(ZMQExample)
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+
+# Add include directories
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/module)
+
+# Add source files
+add_executable(main main/main.cpp module/publisher.cpp module/client.cpp)
+
+find_package(cppzmq)
+target_link_libraries(main cppzmq)

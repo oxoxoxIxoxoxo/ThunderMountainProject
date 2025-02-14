@@ -1,0 +1,3 @@
+/Users/jeremiassoll/Documents/Microcoaster/Simulation/lib/build/CMakeFiles/main.dir
+/Users/jeremiassoll/Documents/Microcoaster/Simulation/lib/build/CMakeFiles/edit_cache.dir
+/Users/jeremiassoll/Documents/Microcoaster/Simulation/lib/build/CMakeFiles/rebuild_cache.dir
